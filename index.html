@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--
+  ELIXIR SIGNATURE — Page d'accueil (un seul fichier)
+  Comment l'utiliser : double-cliquez sur ce fichier pour l'ouvrir dans votre navigateur.
+  HTML  = la structure (les blocs de la page)
+  CSS   = l'habillage (couleurs, polices, espacements)
+  JS    = le comportement (panier, animations au scroll)
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- "viewport" : dit au téléphone d'afficher la page à sa vraie largeur (indispensable pour le mobile) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elixir Signature — Parfums pour homme</title>
+<!-- SEO : la description affichée dans Google sous le titre -->
+<meta name="description" content="Elixir Signature : parfums pour homme. Mila, Blanche Bête, Delta — 39,99 € chacun. Laissez votre signature.">
+<meta name="theme-color" content="#0A0A0A">
+
+<!-- Google Fonts (gratuit) : Great Vibes = signature manuscrite / Montserrat = texte sobre -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== 1. PALETTE : seules ces 4 couleurs existent sur le site ===== */
+:root{
+  --noir:#0A0A0A;      /* fond principal */
+  --noir-2:#141311;    /* fond des cartes (noir légèrement plus clair) */
+  --or:#C9A24B;        /* accents, titres, boutons */
+  --or-clair:#E3C77A;  /* reflet doré au survol */
+  --blanc:#F2EDE4;     /* texte (blanc cassé) */
+  --signature:'Great Vibes',cursive;
+  --texte:'Montserrat',system-ui,sans-serif;
+}
+
+/* ===== 2. BASE (pensée mobile d'abord : le style de base = téléphone) ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noir);color:var(--blanc);font-family:var(--texte);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+section{padding:96px 24px}
+.conteneur{max-width:1100px;margin:0 auto}
+.sur-titre{color:var(--or);letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;font-weight:500;text-align:center}
+h2{font-family:var(--signature);color:var(--or);font-weight:400;font-size:3rem;line-height:1.2;text-align:center;margin:8px 0 24px}
+.filet{width:60px;height:1px;background:var(--or);margin:0 auto 40px}
+
+/* ===== 3. BOUTONS : cadre doré, remplissage doré au survol ===== */
+.bouton{display:inline-block;border:1px solid var(--or);color:var(--or);background:transparent;padding:14px 32px;font:500 .78rem var(--texte);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .4s,color .4s,box-shadow .4s}
+.bouton:hover,.bouton:focus-visible{background:var(--or);color:var(--noir);box-shadow:0 0 28px rgba(201,162,75,.35)}
+
+/* ===== 4. EN-TÊTE ===== */
+header{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;transition:background .4s}
+header.fond{background:rgba(10,10,10,.92);backdrop-filter:blur(6px)}
+.logo{font-family:var(--signature);color:var(--or);font-size:1.9rem}
+nav{display:none;gap:32px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+nav a{position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--or);transition:width .4s}
+nav a:hover::after{width:100%}
+.btn-panier{background:none;border:0;color:var(--or);font:500 .75rem var(--texte);letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
+
+/* ===== 5. HERO plein écran ===== */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;
+  background:radial-gradient(ellipse at 50% 40%,#1c1810 0%,var(--noir) 70%)}
+.hero .logo-grand{font-family:var(--signature);color:var(--or);font-size:clamp(4rem,17vw,9rem);line-height:1;text-shadow:0 0 40px rgba(201,162,75,.25);animation:apparition 2s ease both}
+.hero .slogan{margin:20px 0 44px;letter-spacing:.3em;text-transform:uppercase;font-size:.75rem;animation:apparition 2s .5s ease both}
+.hero .bouton{animation:apparition 2s 1s ease both}
+@keyframes apparition{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ===== 6. MARQUE ===== */
+.marque p{max-width:640px;margin:0 auto 20px;text-align:center}
+.valeurs{display:grid;gap:32px;margin-top:56px;text-align:center}
+.valeurs h3{font-family:var(--signature);color:var(--or);font-weight:400;font-size:1.9rem}
+
+/* ===== 7. COLLECTION ===== */
+.grille{display:grid;gap:24px}
+.carte{background:var(--noir-2);border:1px solid rgba(201,162,75,.2);padding:40px 28px;text-align:center;transition:border-color .5s,transform .5s,box-shadow .5s}
+.carte:hover{border-color:var(--or);transform:translateY(-6px);box-shadow:0 14px 44px rgba(201,162,75,.15)}
+.flacon{width:86px;height:140px;margin:0 auto 24px}
+.carte h3{font-family:var(--signature);color:var(--or);font-weight:400;font-size:2.6rem;line-height:1.2}
+.ambiance{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;opacity:.7;margin-bottom:16px}
+.carte p.desc{font-size:.92rem;margin-bottom:20px}
+.notes{font-size:.8rem;list-style:none;margin-bottom:24px;border-top:1px solid rgba(201,162,75,.2);padding-top:16px}
+.notes b{color:var(--or);font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem}
+.prix{font-size:1.2rem;color:var(--or);margin-bottom:20px;letter-spacing:.1em}
+
+/* ===== 8. HISTOIRE ===== */
+.histoire{background:var(--noir-2)}
+.histoire p{max-width:640px;margin:0 auto 20px;text-align:center}
+.citation{font-family:var(--signature);color:var(--or);font-size:2.2rem;text-align:center;margin-top:40px;line-height:1.3}
+
+/* ===== 9. NEWSLETTER ===== */
+.newsletter form{display:flex;flex-direction:column;gap:14px;max-width:460px;margin:0 auto}
+.newsletter input[type=email]{background:transparent;border:1px solid rgba(201,162,75,.5);color:var(--blanc);padding:14px 16px;font:300 1rem var(--texte);outline:none;transition:border-color .3s}
+.newsletter input:focus{border-color:var(--or-clair)}
+.rgpd{font-size:.72rem;opacity:.65;text-align:center}
+#merci{text-align:center;color:var(--or);margin-top:16px;min-height:1.5em}
+
+/* ===== 10. PIED DE PAGE ===== */
+footer{border-top:1px solid rgba(201,162,75,.25);padding:56px 24px 32px;text-align:center;font-size:.8rem}
+footer .logo{font-size:2.4rem}
+.reseaux,.legal{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin:20px 0}
+.reseaux a,.legal a{opacity:.8;transition:color .3s,opacity .3s}
+.reseaux a:hover,.legal a:hover{color:var(--or);opacity:1}
+.reseaux a{letter-spacing:.2em;text-transform:uppercase;font-size:.72rem}
+.copy{opacity:.5;font-size:.72rem;margin-top:20px}
+
+/* ===== 11. TIROIR PANIER ===== */
+.voile{position:fixed;inset:0;background:rgba(0,0,0,.65);opacity:0;pointer-events:none;transition:opacity .4s;z-index:90}
+.tiroir{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:var(--noir);border-left:1px solid var(--or);z-index:100;transform:translateX(100%);transition:transform .45s ease;padding:28px 24px;display:flex;flex-direction:column}
+body.ouvert .tiroir{transform:none}
+body.ouvert .voile{opacity:1;pointer-events:auto}
+.tiroir h4{font-family:var(--signature);color:var(--or);font-weight:400;font-size:2.2rem}
+#lignes{flex:1;overflow:auto;margin:16px 0}
+.ligne{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(201,162,75,.2);font-size:.9rem}
+.ligne button{background:none;border:1px solid var(--or);color:var(--or);width:26px;height:26px;cursor:pointer;margin:0 4px}
+.total{display:flex;justify-content:space-between;color:var(--or);font-size:1.1rem;margin-bottom:16px}
+.fermer{position:absolute;top:18px;right:20px;background:none;border:0;color:var(--or);font-size:1.6rem;cursor:pointer}
+
+/* ===== 12. APPARITION AU SCROLL (la classe .visible est ajoutée par le JS) ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===== 13. ÉCRANS PLUS LARGES (tablette / ordinateur) ===== */
+@media (min-width:768px){
+  nav{display:flex}
+  section{padding:140px 40px}
+  h2{font-size:4rem}
+  .grille,.valeurs{grid-template-columns:repeat(3,1fr)}
+  .newsletter form{flex-direction:row}
+  .newsletter input[type=email]{flex:1}
+}
+/* Accessibilité : coupe les animations si l'utilisateur les a désactivées sur son appareil */
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+
+<body>
+
+<!-- ===== EN-TÊTE ===== -->
+<header id="entete">
+  <a href="#accueil" class="logo">Elixir Signature</a>
+  <nav aria-label="Navigation principale">
+    <a href="#marque">La Maison</a>
+    <a href="#collection">Collection</a>
+    <a href="#histoire">Notre histoire</a>
+    <a href="#newsletter">Newsletter</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="btn-panier" id="ouvrir-panier" aria-label="Ouvrir le panier">Panier (<span id="compteur">0</span>)</button>
+</header>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="accueil">
+  <h1 class="logo-grand">Elixir Signature</h1>
+  <p class="slogan">Laissez votre signature.</p>
+  <a href="#collection" class="bouton">Découvrir la collection</a>
+</section>
+
+<!-- ===== PRÉSENTATION DE LA MARQUE ===== -->
+<section class="marque" id="marque">
+  <div class="conteneur reveal">
+    <p class="sur-titre">La Maison</p>
+    <h2>Un parfum, une signature</h2>
+    <div class="filet"></div>
+    <p>Elixir Signature est née d'une conviction : un homme ne se reconnaît pas à ce qu'il dit, mais à ce qu'il laisse derrière lui.</p>
+    <p>Chaque fragrance est composée comme une écriture — des notes franches, un sillage maîtrisé, aucune concession.</p>
+    <div class="valeurs">
+      <div><h3>Caractère</h3><p>Des parfums affirmés, jamais anonymes.</p></div>
+      <div><h3>Élégance</h3><p>Le luxe de la retenue, sans ostentation.</p></div>
+      <div><h3>Signature</h3><p>Une empreinte olfactive qui n'appartient qu'à vous.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLLECTION ===== -->
+<section id="collection">
+  <div class="conteneur">
+    <p class="sur-titre reveal">La Collection</p>
+    <h2 class="reveal">Trois signatures</h2>
+    <div class="filet"></div>
+    <div class="grille" id="grille"><!-- les 3 cartes sont générées par le JavaScript plus bas --></div>
+  </div>
+</section>
+
+<!-- ===== NOTRE HISTOIRE ===== -->
+<section class="histoire" id="histoire">
+  <div class="conteneur reveal">
+    <p class="sur-titre">Notre histoire</p>
+    <h2>L'encre et le sillage</h2>
+    <div class="filet"></div>
+    <p>Tout commence par une signature : celle qu'on apprend à tracer, puis qu'on perfectionne toute sa vie. Elixir Signature est née du désir de transposer ce geste intime dans le parfum.</p>
+    <p>Nous avons imaginé trois fragrances comme trois caractères : la douceur magnétique de Mila, la puissance sauvage de Blanche Bête, la profondeur nocturne de Delta. Trois façons de s'affirmer, une même exigence.</p>
+    <p class="citation">« Ce qu'on laisse derrière soi<br>vaut plus que ce qu'on montre. »</p>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter" id="newsletter">
+  <div class="conteneur reveal">
+    <p class="sur-titre">Cercle Signature</p>
+    <h2>Rejoignez le cercle</h2>
+    <div class="filet"></div>
+    <p style="text-align:center;margin-bottom:32px">Avant-premières, éditions limitées et −10 % sur votre première commande.</p>
+    <form id="form-news">
+      <input type="email" id="email" placeholder="Votre adresse e-mail" required aria-label="Adresse e-mail">
+      <button class="bouton" type="submit">S'inscrire</button>
+    </form>
+    <p class="rgpd">Vos données servent uniquement à vous envoyer nos nouveautés. Désinscription possible à tout moment.</p>
+    <p id="merci" role="status"></p>
+  </div>
+</section>
+</main>
+
+<!-- ===== PIED DE PAGE ===== -->
+<footer id="contact">
+  <a href="#accueil" class="logo">Elixir Signature</a>
+  <p>Contact : <a href="mailto:contact@elixir-signature.fr" style="color:var(--or)">contact@elixir-signature.fr</a></p>
+  <div class="reseaux">
+    <!-- Remplacez # par vos vrais liens -->
+    <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a>
+  </div>
+  <div class="legal">
+    <a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Politique de confidentialité</a>
+  </div>
+  <p class="copy">© 2026 Elixir Signature — Tous droits réservés. L'abus d'alcool est dangereux pour la santé, ce produit est destiné à un usage externe.</p>
+</footer>
+
+<!-- ===== TIROIR PANIER ===== -->
+<div class="voile" id="voile"></div>
+<aside class="tiroir" id="tiroir" aria-label="Panier">
+  <button class="fermer" id="fermer-panier" aria-label="Fermer le panier">×</button>
+  <h4>Votre panier</h4>
+  <div id="lignes"></div>
+  <div class="total"><span>Total</span><span id="total">0,00 €</span></div>
+  <!-- Le paiement réel se branche via Shopify / Stripe : voir GUIDE.md -->
+  <button class="bouton" id="commander">Commander</button>
+</aside>
+
+<script>
+/* ===== A. DONNÉES DES PRODUITS : modifiez les textes ici ===== */
+const PRODUITS = [
+  { id:"mila", nom:"Mila", ambiance:"Boisé · Ambré · Magnétique",
+    desc:"Une élégance chaleureuse et enveloppante. Mila séduit en silence, avec la douceur d'un cuir patiné et la chaleur d'un bois précieux.",
+    tete:"Bergamote, poivre rose", coeur:"Iris, cèdre", fond:"Ambre, vanille noire, tonka" },
+  { id:"blanche-bete", nom:"Blanche Bête", ambiance:"Frais · Sauvage · Puissant",
+    desc:"Le contraste d'une fraîcheur glacée et d'un tempérament animal. Blanche Bête impose sa présence sans jamais élever la voix.",
+    tete:"Menthe poivrée, genévrier", coeur:"Sauge, lavande noire", fond:"Musc blanc, vétiver, cuir" },
+  { id:"delta", nom:"Delta", ambiance:"Oriental · Épicé · Nocturne",
+    desc:"Un parfum de seuil, de nuit et de décisions. Delta déploie un sillage profond et fumé, pour ceux qui marquent les esprits.",
+    tete:"Cardamome, safran", coeur:"Encens, cuir", fond:"Oud, patchouli, résine d'ambre" }
+];
+const PRIX = 39.99;
+const eur = n => n.toFixed(2).replace(".", ",") + " €";
+
+/* ===== B. CARTES PRODUIT (flacon dessiné en SVG : aucune image à télécharger) ===== */
+const flacon = `<svg class="flacon" viewBox="0 0 86 140" fill="none" stroke="#C9A24B" stroke-width="1.5" aria-hidden="true">
+  <rect x="30" y="4" width="26" height="22" fill="#0A0A0A"/><rect x="36" y="26" width="14" height="10"/>
+  <rect x="6" y="36" width="74" height="100" rx="4" fill="#0A0A0A"/>
+  <rect x="22" y="70" width="42" height="36" stroke-width="1"/>
+  <path d="M30 90c6-10 10 6 14-4s8 4 12-2" stroke-width="1.2"/></svg>`;
+
+document.getElementById("grille").innerHTML = PRODUITS.map(p => `
+  <article class="carte reveal">
+    ${flacon}
+    <h3>${p.nom}</h3>
+    <p class="ambiance">${p.ambiance}</p>
+    <p class="desc">${p.desc}</p>
+    <ul class="notes">
+      <li><b>Tête</b> — ${p.tete}</li>
+      <li><b>Cœur</b> — ${p.coeur}</li>
+      <li><b>Fond</b> — ${p.fond}</li>
+    </ul>
+    <p class="prix">${eur(PRIX)}</p>
+    <button class="bouton" data-id="${p.id}">Ajouter au panier</button>
+  </article>`).join("");
+
+/* ===== C. PANIER (mémorisé dans le navigateur via localStorage) ===== */
+let panier = {};
+try { panier = JSON.parse(localStorage.getItem("elixir-panier")) || {}; } catch(e) {}
+
+function majPanier(){
+  try { localStorage.setItem("elixir-panier", JSON.stringify(panier)); } catch(e) {}
+  let qte = 0, total = 0, html = "";
+  for (const id in panier){
+    const p = PRODUITS.find(x => x.id === id), n = panier[id];
+    qte += n; total += n * PRIX;
+    html += `<div class="ligne"><span>${p.nom}</span>
+      <span><button data-moins="${id}" aria-label="Retirer un">−</button>${n}<button data-plus="${id}" aria-label="Ajouter un">+</button></span>
+      <span>${eur(n*PRIX)}</span></div>`;
+  }
+  document.getElementById("compteur").textContent = qte;
+  document.getElementById("total").textContent = eur(total);
+  document.getElementById("lignes").innerHTML = html || "<p style='opacity:.6'>Votre panier est vide.</p>";
+}
+const basculer = ouvert => document.body.classList.toggle("ouvert", ouvert);
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.dataset.id){ panier[t.dataset.id] = (panier[t.dataset.id]||0) + 1; majPanier(); basculer(true); }
+  if (t.dataset.plus){ panier[t.dataset.plus]++; majPanier(); }
+  if (t.dataset.moins){ if(--panier[t.dataset.moins] <= 0) delete panier[t.dataset.moins]; majPanier(); }
+});
+document.getElementById("ouvrir-panier").onclick = () => basculer(true);
+document.getElementById("fermer-panier").onclick = () => basculer(false);
+document.getElementById("voile").onclick = () => basculer(false);
+document.getElementById("commander").onclick = () =>
+  alert("Le paiement sera activé quand vous brancherez Shopify ou Stripe (voir GUIDE.md).");
+majPanier();
+
+/* ===== D. NEWSLETTER (démo : à relier à Brevo / Mailchimp, voir GUIDE.md) ===== */
+document.getElementById("form-news").onsubmit = e => {
+  e.preventDefault();
+  document.getElementById("merci").textContent = "Merci. Bienvenue dans le cercle Signature.";
+  e.target.reset();
+};
+
+/* ===== E. EN-TÊTE FONCÉ AU SCROLL + APPARITION DES BLOCS ===== */
+const entete = document.getElementById("entete");
+addEventListener("scroll", () => entete.classList.toggle("fond", scrollY > 40), {passive:true});
+
+// IntersectionObserver : prévient quand un élément entre dans l'écran
+const obs = new IntersectionObserver(items => items.forEach(i => {
+  if (i.isIntersecting){ i.target.classList.add("visible"); obs.unobserve(i.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 0.15 + "s"; obs.observe(el); });
+</script>
+</body>
+</html>
